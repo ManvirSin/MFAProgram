@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LoginController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: LoginController (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LoginController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    28.6%
+  </span>
+  <span class="absValue">
+    (8/28)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.util.Map;
+&nbsp;import java.util.Scanner;
+&nbsp;
+&nbsp;// Login controller class
+&nbsp;public class LoginController {
+&nbsp;    private final MFA mfa;
+<b class="fc">&nbsp;    public int remainingTries = 3;</b>
+&nbsp;
+<b class="nc">&nbsp;    public LoginController(MFA mfa, Map&lt;String, String&gt; loginCredentials) {</b>
+<b class="nc">&nbsp;        this.mfa = mfa;</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public LoginController(MFA mfa) {</b>
+&nbsp;
+<b class="fc">&nbsp;        this.mfa = null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public void login() {
+<b class="fc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+&nbsp;
+<b class="fc">&nbsp;        while (remainingTries &gt; 0) {</b>
+<b class="fc">&nbsp;            System.out.print(&quot;Enter verification code: &quot;);</b>
+<b class="fc">&nbsp;            String inputCode = scanner.nextLine();</b>
+&nbsp;
+<b class="fc">&nbsp;            if (inputCode.equals(mfa.generateCode())) {</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Logged in successfully!&quot;);</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            remainingTries--;</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Invalid verification code. Remaining tries: &quot; + remainingTries);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Maximum number of login attempts reached. System will shut down.&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public void verifyMFA() {
+<b class="nc">&nbsp;        String code = mfa.generateCode();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Verification code sent to your device: &quot; + code);</b>
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+<b class="nc">&nbsp;        int remainingMfaTries = 3;</b>
+&nbsp;
+<b class="nc">&nbsp;        while (remainingMfaTries &gt; 0) {</b>
+<b class="nc">&nbsp;            System.out.print(&quot;Enter verification code: &quot;);</b>
+<b class="nc">&nbsp;            String inputCode = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;            if (inputCode.equals(code)) {</b>
+<b class="nc">&nbsp;                System.out.println(&quot;MFA verified successfully!&quot;);</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            remainingMfaTries--;</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Invalid verification code. Remaining tries: &quot; + remainingMfaTries);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Maximum number of MFA verification attempts reached. System will shut down.&quot;);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-24 14:35</div>
+</div>
+</body>
+</html>
